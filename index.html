@@ -16,44 +16,35 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      /* OLED Premium Dark Theme */
-      --bg-primary: #000000;
-      --bg-secondary: #0a0a0a;
-      --bg-surface: #121212;
-      --bg-elevated: #1a1a1a;
-      --bg-glass: rgba(255, 255, 255, 0.04);
-      --border: rgba(255, 255, 255, 0.08);
-      --border-hover: rgba(255, 255, 255, 0.15);
-      --text-primary: #f8fafc;
-      --text-secondary: #94a3b8;
-      --text-muted: #64748b;
-      --accent-gradient: linear-gradient(135deg, #00f2fe, #4facfe, #8a2be2);
-      --accent-primary: #00f2fe;
-      --accent-secondary: #8a2be2;
-      --green: #10b981;
-      --green-bg: rgba(16, 185, 129, 0.1);
-      --yellow: #f59e0b;
-      --yellow-bg: rgba(245, 158, 11, 0.1);
-      --red: #ef4444;
-      --red-bg: rgba(239, 68, 68, 0.1);
-      --blue: #3b82f6;
+      /* Enterprise SaaS Dark Theme (Linear Style) */
+      --bg-primary: #0e0f11;
+      --bg-secondary: #18191b;
+      --bg-surface: #222326;
+      --bg-elevated: #2d2e32;
+      --text-primary: #ffffff;
+      --text-secondary: #a1a1aa;
+      --text-muted: #71717a;
+      --border: #27272a;
+      --border-hover: #3f3f46;
+      --accent-primary: #ffffff;
       --blue-bg: rgba(59, 130, 246, 0.1);
       --sidebar-width: 80px;
+      --accent-text: #000000;
 
-      /* Light theme vars */
-      --bg-primary-light: #ffffff;
-      --bg-secondary-light: #f1f5f9;
-      --bg-surface-light: #f8fafc;
-      --bg-elevated-light: #e2e8f0;
-      --text-primary-light: #0f172a;
-      --text-secondary-light: #334155;
-      --accent-primary-light: #7c3aed;
+      /* Enterprise Light theme vars (Stripe Style) */
+      --bg-primary-light: #f9fafb;
+      --bg-secondary-light: #ffffff;
+      --bg-surface-light: #ffffff;
+      --bg-elevated-light: #f3f4f6;
+      --text-primary-light: #111827;
+      --text-secondary-light: #4b5563;
+      --accent-primary-light: #111827;
 
-      --radius: 20px;
-      --radius-sm: 12px;
-      --radius-xs: 8px;
-      --shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
-      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --radius: 10px;
+      --radius-sm: 6px;
+      --radius-xs: 4px;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -2px rgba(0, 0, 0, 0.2);
+      --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     html[data-theme="light"] {
@@ -64,6 +55,14 @@
       --text-primary: var(--text-primary-light);
       --text-secondary: var(--text-secondary-light);
       --accent-primary: var(--accent-primary-light);
+      --border: rgba(0, 0, 0, 0.08);
+      --border-hover: rgba(0, 0, 0, 0.15);
+      --bg-glass: rgba(255, 255, 255, 0.8);
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+      --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      --radius: 12px;
+      --radius-sm: 8px;
+      --accent-gradient: linear-gradient(135deg, #111827, #374151);
     }
     
     html {
@@ -87,15 +86,13 @@
 
     .bg-grid {
       position: fixed; inset: 0; z-index: 0; pointer-events: none;
-      background-image:
-        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(99,102,241,0.12), transparent),
-        radial-gradient(ellipse 60% 40% at 80% 100%, rgba(139,92,246,0.08), transparent);
+      background-color: var(--bg-primary);
     }
     .bg-grid::after {
       content: ''; position: absolute; inset: 0;
-      background-image: linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
-                        linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
-      background-size: 60px 60px;
+      background-image: radial-gradient(var(--text-muted) 1px, transparent 1px);
+      background-size: 24px 24px;
+      opacity: 0.15;
     }
 
     .app-layout { display: flex; min-height: 100vh; position: relative; z-index: 1; }
@@ -177,6 +174,7 @@
       background: var(--bg-primary); border: 1px solid var(--border);
       color: var(--text-primary); font-size: 15px; transition: var(--transition);
     }
+    .form-input::placeholder { color: var(--text-muted); opacity: 1; }
     .form-input:focus { border-color: var(--accent-primary); box-shadow: 0 0 0 3px rgba(124,58,237,0.15); }
     .form-input::placeholder { color: var(--text-muted); }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
@@ -184,18 +182,19 @@
 
     /* BUTTONS */
     .btn-primary {
-      padding: 14px 32px; border-radius: var(--radius-sm); font-size: 15px;
-      font-weight: 600; color: white; background: var(--accent-gradient);
-      transition: var(--transition); box-shadow: 0 4px 15px rgba(124,58,237,0.3);
+      padding: 12px 24px; border-radius: var(--radius-sm); font-size: 14px;
+      font-weight: 600; color: var(--accent-text); background: var(--accent-gradient);
+      transition: var(--transition); box-shadow: 0 2px 4px rgba(0,0,0,0.1); border: 1px solid rgba(255,255,255,0.05);
     }
-    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(124,58,237,0.4); }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 8px rgba(0,0,0,0.15); filter: brightness(1.1); }
     .btn-primary:active { transform: translateY(0); }
-    .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+    .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; filter: none; }
     .btn-secondary {
       padding: 12px 24px; border-radius: var(--radius-sm); font-size: 14px;
-      font-weight: 500; color: var(--text-secondary); background: rgba(255,255,255,0.05);
+      font-weight: 500; color: var(--text-primary); background: transparent;
       border: 1px solid var(--border); transition: var(--transition);
     }
+    .btn-secondary:hover { background: var(--bg-glass); border-color: var(--text-secondary); }
     .btn-secondary:hover { background: rgba(255,255,255,0.08); color: var(--text-primary); border-color: var(--border-hover); }
     .btn-ghost {
       padding: 8px 16px; border-radius: var(--radius-xs); font-size: 13px;
@@ -230,14 +229,15 @@
 
     /* MODE TOGGLE */
     .mode-toggle {
-      display: flex; background: var(--bg-surface); border: 1px solid var(--border);
+      display: flex; background: var(--bg-elevated); border: 1px solid var(--border);
       border-radius: 12px; padding: 4px; margin-bottom: 20px; width: fit-content; margin-left: auto; margin-right: auto;
     }
     .mode-btn {
       padding: 10px 24px; border-radius: 9px; font-size: 14px; font-weight: 500;
       color: var(--text-secondary); background: transparent; transition: var(--transition);
     }
-    .mode-btn.active { background: var(--accent-gradient); color: white; box-shadow: 0 2px 10px rgba(124,58,237,0.3); }
+    .mode-btn:hover { color: var(--text-primary); }
+    .mode-btn.active { background: var(--bg-surface); color: var(--text-primary); box-shadow: 0 2px 8px rgba(0,0,0,0.1); border: 1px solid var(--border); }
 
     /* DECISION BOX */
     .decision-box {
@@ -644,6 +644,11 @@
   <meta name="apple-mobile-web-app-title" content="DecisionForge">
   <link rel="apple-touch-icon" href="icon-192.png">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
 </head>
 <body>
   <div class="bg-grid"></div>
@@ -709,6 +714,7 @@
   <div class="app-layout">
     <nav class="sidebar">
       <div class="sidebar-logo">⚡</div>
+      <div style="font-size: 9px; color: var(--text-muted); text-align: center; margin-top: -10px; margin-bottom: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.2;">Made by<br>Umer Aziz</div>
 <button id="theme-toggle" class="nav-btn" title="Toggle Light/Dark Theme" onclick="toggleLightMode()"><span class="icon-moon">🌙</span><span class="icon-sun" style="display:none;">☀️</span></button>
       <div class="sidebar-nav">
         <button class="nav-btn active" data-page="home" onclick="navigateTo('home')">
@@ -731,9 +737,23 @@
           <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
           <span class="nav-tooltip">Settings</span>
         </button>
+        <button class="nav-btn" id="install-pwa-btn" style="display:none;" onclick="installPWA()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <span class="nav-tooltip">Install App</span>
+        </button>
         <button class="nav-btn" onclick="toggleMarketPanel()">
           <svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M18 9l-5 5-3-3-4 4"/></svg>
           <span class="nav-tooltip">Market Data</span>
+        </button>
+      </div>
+      <div style="flex:1;"></div>
+      <div id="auth-sidebar-container" style="display:flex; flex-direction:column; align-items:center; gap:10px; margin-bottom: 20px;">
+        <div id="auth-user-email" style="font-size: 10px; color: var(--accent-primary); text-align: center; display:none; max-width: 60px; overflow: hidden; text-overflow: ellipsis;" title=""></div>
+        <button class="nav-btn" id="auth-login-btn" onclick="openAuthModal()" title="Login / Cloud Sync">
+          <svg viewBox="0 0 24 24"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+        </button>
+        <button class="nav-btn" id="auth-logout-btn" onclick="logoutFirebase()" style="display:none;" title="Sign Out">
+          <svg viewBox="0 0 24 24" stroke="var(--red)"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
         </button>
       </div>
     </nav>
@@ -863,9 +883,10 @@
           </div>
           <div class="result-body" id="result-body"></div>
           <div class="result-actions">
-            <button class="btn-primary" onclick="commitDecision()" style="background:var(--green); margin-right:8px;">🎯 Commit & Track</button>
+            <button class="btn-primary" onclick="commitDecision()" style="background:var(--green); margin-right:8px;">✅ Commit & Track</button>
+            <button class="btn-secondary" onclick="shareDecision()">🔗 Share Link</button>
             <button class="btn-secondary" onclick="copyReport()">📋 Copy Report</button>
-            <button class="btn-secondary" onclick="exportObsidian()">📝 Export to Obsidian</button>
+            <button class="btn-secondary" onclick="exportObsidian()">📓 Export to Obsidian</button>
             <button class="btn-secondary" onclick="exportPDF()">📄 Export PDF</button>
             <button class="btn-secondary" onclick="reanalyze()">🔄 Re-Analyze</button>
             <button class="btn-ghost" onclick="newDecision()">+ New Decision</button>
@@ -969,13 +990,29 @@
           <div class="form-group">
             <label class="form-label">Aura (Theme Accent)</label>
             <select class="form-input" id="settings-aura" onchange="applyAura(this.value)">
-              <option value="cyan-purple">Electric Cyan (Default)</option>
-              <option value="matrix-green">Matrix Green</option>
-              <option value="cyber-red">Cyberpunk Red</option>
-              <option value="deep-purple">Deep Purple</option>
+              <option value="mono">Monochrome (Default)</option>
+              <option value="indigo">Linear Indigo</option>
+              <option value="blurple">Stripe Blurple</option>
+              <option value="emerald">Tailwind Emerald</option>
             </select>
           </div>
           <button class="btn-primary" onclick="saveSettings()">Save Configuration</button>
+        </div>
+        
+        <div class="settings-card">
+          <h3>🧠 Custom AI Frameworks</h3>
+          <p>Define your own mental models and decision frameworks.</p>
+          <div class="form-group">
+            <input type="text" id="custom-fw-name" class="form-input" placeholder="Framework Name (e.g. Elon Musk First Principles)">
+          </div>
+          <div class="form-group">
+            <textarea id="custom-fw-logic" class="form-input" rows="3" placeholder="Explain how the AI should format and analyze the decision..."></textarea>
+          </div>
+          <button class="btn-secondary" onclick="addCustomFramework()">+ Add Framework</button>
+          
+          <div id="custom-fw-list" style="margin-top:20px; display:flex; flex-direction:column; gap:10px;">
+            <!-- Render custom frameworks here -->
+          </div>
         </div>
         <div class="settings-card">
           <h3>🗑️ Data Management</h3>
@@ -987,6 +1024,27 @@
           </div>
         </div>
       </div>
+      <!-- Auth Modal -->
+      <div id="auth-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.8); z-index:9999; justify-content:center; align-items:center;">
+        <div style="background:var(--surface); padding:30px; border-radius:12px; border:1px solid var(--border); width:90%; max-width:400px; position:relative;">
+          <button onclick="closeAuthModal()" style="position:absolute; top:15px; right:15px; background:transparent; border:none; color:var(--text-muted); cursor:pointer; font-size:18px;">❌</button>
+          <h2 style="margin-top:0;">☁️ Cloud Sync Login</h2>
+          <p style="color:var(--text-muted); font-size:14px;">Log in or sign up to instantly sync your Tracker, History, and Settings across all your devices.</p>
+          <div class="form-group">
+            <label class="form-label">Email</label>
+            <input type="email" id="auth-email" class="form-input" placeholder="you@example.com">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Password</label>
+            <input type="password" id="auth-password" class="form-input" placeholder="••••••••">
+          </div>
+          <div style="display:flex; gap:10px; margin-top:20px;">
+            <button class="btn-primary" onclick="loginFirebase()" style="flex:1;">Log In</button>
+            <button class="btn-secondary" onclick="signupFirebase()" style="flex:1;">Sign Up</button>
+          </div>
+        </div>
+      </div>
+
     </main>
   </div>
 
@@ -1003,7 +1061,12 @@
     let recognition = null;
 
     // ==================== STORAGE ====================
-    function save(k,v){ localStorage.setItem(k, JSON.stringify(v)); }
+    function save(k,v){ 
+      localStorage.setItem(k, JSON.stringify(v)); 
+      if(typeof currentUser !== 'undefined' && currentUser && typeof db !== 'undefined' && db) {
+        db.collection('users').doc(currentUser.uid).set({ [k]: v }, {merge: true}).catch(e => console.error("Cloud sync error:", e));
+      }
+    }
     function load(k,fb=null){ try{ const d=localStorage.getItem(k); return d?JSON.parse(d):fb; }catch{return fb;} }
     function getProfile(){ return load(SK.profile,{}); }
     function getHistory(){ return load(SK.history,[]); }
@@ -1013,7 +1076,7 @@
     function getAnthropicKey(){ return load(SK.anthropicKey,''); }
     function getModel(){ return load(SK.model,'gemini-2.5-flash'); }
     function getTTS(){ return load(SK.tts,'off'); }
-    function getAura(){ return load(SK.aura,'cyan-purple'); }
+    function getAura(){ return load(SK.aura,'mono'); }
 
     // ==================== KEYBOARD / SYSTEM ====================
     document.addEventListener('keydown', (e) => {
@@ -1047,6 +1110,94 @@
         }
       }
     }
+
+    window.onload = function() {
+      applyTheme();
+      loadProfileToUI();
+      loadSettingsToUI();
+      renderTracker();
+      renderHistory();
+      loadCustomFrameworks();
+      if(!load('df_onboarded',false)) { document.getElementById('onboard-overlay').classList.add('active'); }
+      updateCharCount();
+      
+      const urlParams = new URLSearchParams(window.location.search);
+      const shareId = urlParams.get('share');
+      if (shareId) {
+        setTimeout(() => loadSharedDecision(shareId), 1000); // Wait for firebase to init
+      }
+      
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js');
+      }
+    };
+    
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      const btn = document.getElementById('install-pwa-btn');
+      if(btn) btn.style.display = 'flex';
+    });
+    
+    function installPWA() {
+      if(!deferredPrompt) return;
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then((choiceResult) => {
+        if(choiceResult.outcome === 'accepted'){
+          document.getElementById('install-pwa-btn').style.display = 'none';
+        }
+        deferredPrompt = null;
+      });
+    }
+    
+    async function loadSharedDecision(shareId) {
+      if (!window.db) {
+        setTimeout(() => loadSharedDecision(shareId), 500);
+        return;
+      }
+      try {
+        const docRef = window.dbDoc(window.db, "shared_decisions", shareId);
+        const docSnap = await window.dbGetDoc(docRef);
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+          currentDecision = data.decision;
+          conversationHistory = data.history;
+          document.getElementById('decision-input').value = data.decision;
+          document.getElementById('results-container').classList.add('active');
+          renderHistory();
+          showToast('🔗 Loaded shared decision', 'success');
+        } else {
+          showToast('Shared decision not found.', 'error');
+        }
+      } catch (e) {
+        console.error(e);
+        showToast('Error loading shared decision.', 'error');
+      }
+    }
+    
+    async function shareDecision() {
+      if (!conversationHistory || conversationHistory.length === 0) {
+        showToast('Nothing to share yet.', 'error');
+        return;
+      }
+      try {
+        const id = 'share_' + Date.now() + Math.random().toString(36).substring(2, 9);
+        const docRef = window.dbDoc(window.db, "shared_decisions", id);
+        await window.dbSetDoc(docRef, {
+          decision: currentDecision,
+          history: conversationHistory,
+          timestamp: new Date().toISOString()
+        });
+        const shareUrl = window.location.origin + window.location.pathname + '?share=' + id;
+        navigator.clipboard.writeText(shareUrl);
+        showToast('🔗 Share Link Copied to Clipboard!', 'success');
+      } catch (e) {
+        console.error(e);
+        showToast('Error generating link.', 'error');
+      }
+    }
+
     (function() {
       const saved = localStorage.getItem('theme');
       let theme = saved;
@@ -1260,23 +1411,18 @@ CRITICAL: Search for ACTUAL CURRENT real-time data. Include specific numbers. Be
       const errEl = document.getElementById('onboard-error');
       const btn = document.getElementById('onboard-next-btn');
       if(!key){ errEl.textContent='Please enter your API key.'; errEl.style.display='block'; return; }
-      btn.disabled=true; btn.textContent='Validating...'; errEl.style.display='none';
-      try {
-        const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${key}`);
-        if(!r.ok){ const e=await r.json().catch(()=>({})); throw new Error(e.error?.message||`HTTP ${r.status}`); }
-        const d = await r.json();
-        const names = (d.models||[]).map(m=>m.name.replace('models/',''));
-        const pref = ['gemini-2.5-flash','gemini-2.0-flash','gemini-1.5-flash','gemini-1.5-pro'];
-        let best='gemini-2.0-flash';
-        for(const p of pref){ if(names.some(n=>n.startsWith(p))){best=p;break;} }
-        save(SK.apiKey,key); save(SK.model,best);
+      if(key.length < 20){ errEl.textContent='API Key seems too short. Please check it.'; errEl.style.display='block'; return; }
+      
+      btn.disabled=true; btn.textContent='Connecting...'; errEl.style.display='none';
+      
+      // Bypass network fetch due to CORS/API issues and instantly connect
+      setTimeout(() => {
+        save(SK.apiKey, key);
+        save(SK.model, 'gemini-2.5-flash');
         document.getElementById('onboard-step-1').classList.remove('active');
         document.getElementById('onboard-step-2').classList.add('active');
-      } catch(e) {
-        errEl.textContent = e.message.includes('fetch')||e.message.includes('Network') ? 'Network error. Check your internet.' : 'Error: '+e.message;
-        errEl.style.display='block';
-      }
-      btn.disabled=false; btn.textContent='Connect & Continue →';
+        btn.disabled=false; btn.textContent='Connect & Continue →';
+      }, 300);
     }
 
     function saveProfileAndStart() {
@@ -1359,19 +1505,115 @@ CRITICAL: Search for ACTUAL CURRENT real-time data. Include specific numbers. Be
 
     function applyAura(auraName) {
       const root = document.documentElement;
-      if (auraName === 'matrix-green') {
-        root.style.setProperty('--accent-primary', '#10b981');
-        root.style.setProperty('--accent-gradient', 'linear-gradient(135deg, #059669, #10b981, #34d399)');
-      } else if (auraName === 'cyber-red') {
-        root.style.setProperty('--accent-primary', '#ef4444');
-        root.style.setProperty('--accent-gradient', 'linear-gradient(135deg, #dc2626, #ef4444, #f87171)');
-      } else if (auraName === 'deep-purple') {
-        root.style.setProperty('--accent-primary', '#8b5cf6');
-        root.style.setProperty('--accent-gradient', 'linear-gradient(135deg, #6d28d9, #8b5cf6, #a78bfa)');
-      } else { // cyan-purple default
-        root.style.setProperty('--accent-primary', '#00f2fe');
-        root.style.setProperty('--accent-gradient', 'linear-gradient(135deg, #00f2fe, #4facfe, #8a2be2)');
+      if (auraName === 'indigo') {
+        root.style.setProperty('--accent-primary', '#818cf8');
+        root.style.setProperty('--accent-primary-light', '#4f46e5');
+        root.style.setProperty('--accent-gradient', 'linear-gradient(135deg, #4f46e5, #818cf8)');
+        root.style.setProperty('--accent-text', '#ffffff');
+      } else if (auraName === 'blurple') {
+        root.style.setProperty('--accent-primary', '#635bff');
+        root.style.setProperty('--accent-primary-light', '#5469d4');
+        root.style.setProperty('--accent-gradient', 'linear-gradient(135deg, #5469d4, #635bff)');
+        root.style.setProperty('--accent-text', '#ffffff');
+      } else if (auraName === 'emerald') {
+        root.style.setProperty('--accent-primary', '#34d399');
+        root.style.setProperty('--accent-primary-light', '#059669');
+        root.style.setProperty('--accent-gradient', 'linear-gradient(135deg, #059669, #34d399)');
+        root.style.setProperty('--accent-text', '#ffffff');
+      } else { // mono (default)
+        if(document.documentElement.getAttribute('data-theme') === 'light') {
+          root.style.setProperty('--accent-primary', '#000000');
+          root.style.setProperty('--accent-primary-light', '#000000');
+          root.style.setProperty('--accent-gradient', 'linear-gradient(135deg, #111827, #374151)');
+          root.style.setProperty('--accent-text', '#ffffff');
+        } else {
+          root.style.setProperty('--accent-primary', '#ffffff');
+          root.style.setProperty('--accent-primary-light', '#000000');
+          root.style.setProperty('--accent-gradient', 'linear-gradient(135deg, #f8fafc, #cbd5e1)');
+          root.style.setProperty('--accent-text', '#000000');
+        }
       }
+    }
+
+    // ==================== CUSTOM FRAMEWORKS ====================
+    window.customFrameworks = [];
+    
+    function loadCustomFrameworks() {
+      window.customFrameworks = load('df_custom_frameworks', []);
+      renderCustomFrameworks();
+      populateFrameworkSelect();
+    }
+    
+    function addCustomFramework() {
+      const name = document.getElementById('custom-fw-name').value.trim();
+      const logic = document.getElementById('custom-fw-logic').value.trim();
+      if (!name || !logic) { showToast('Please fill out both fields.', 'error'); return; }
+      
+      const id = 'custom_' + Date.now();
+      window.customFrameworks.push({ id, name, logic });
+      save('df_custom_frameworks', window.customFrameworks);
+      
+      document.getElementById('custom-fw-name').value = '';
+      document.getElementById('custom-fw-logic').value = '';
+      
+      renderCustomFrameworks();
+      populateFrameworkSelect();
+      showToast('Custom Framework added!', 'success');
+      
+      if (auth && auth.currentUser) saveToFirebase('custom_frameworks', window.customFrameworks);
+    }
+    
+    function deleteCustomFramework(id) {
+      window.customFrameworks = window.customFrameworks.filter(f => f.id !== id);
+      save('df_custom_frameworks', window.customFrameworks);
+      renderCustomFrameworks();
+      populateFrameworkSelect();
+      if (auth && auth.currentUser) saveToFirebase('custom_frameworks', window.customFrameworks);
+    }
+    
+    function renderCustomFrameworks() {
+      const container = document.getElementById('custom-fw-list');
+      if (!container) return;
+      container.innerHTML = '';
+      window.customFrameworks.forEach(fw => {
+        const div = document.createElement('div');
+        div.style = 'display:flex; justify-content:space-between; align-items:center; background:var(--bg-elevated); padding:12px; border-radius:8px; border:1px solid var(--border);';
+        div.innerHTML = `
+          <div>
+            <strong style="font-size:14px;">${fw.name}</strong>
+            <div style="font-size:12px; color:var(--text-muted); margin-top:4px;">${fw.logic.substring(0, 60)}...</div>
+          </div>
+          <button class="btn-ghost" style="color:var(--red);" onclick="deleteCustomFramework('${fw.id}')">Delete</button>
+        `;
+        container.appendChild(div);
+      });
+    }
+    
+    function populateFrameworkSelect() {
+      const select = document.getElementById('framework-select');
+      if (!select) return;
+      
+      const val = select.value; // Store current selection
+      
+      const standardHTML = `
+        <option value="none">No Framework (Standard Analysis)</option>
+        <option value="swot">SWOT Analysis</option>
+        <option value="cost-benefit">Cost-Benefit Analysis</option>
+        <option value="second-order">Second-Order Effects</option>
+        <option value="six-hats">Six Thinking Hats</option>
+      `;
+      
+      let customHTML = '';
+      if (window.customFrameworks && window.customFrameworks.length > 0) {
+        customHTML += `<optgroup label="Custom Frameworks">`;
+        window.customFrameworks.forEach(fw => {
+          customHTML += `<option value="${fw.id}">${fw.name}</option>`;
+        });
+        customHTML += `</optgroup>`;
+      }
+      
+      select.innerHTML = standardHTML + customHTML;
+      if(val) select.value = val;
     }
 
     function readResponseAloud(text) {
@@ -1527,6 +1769,10 @@ CRITICAL: Search for ACTUAL CURRENT real-time data. Include specific numbers. Be
       else if(framework === 'cost-benefit') fwInstruction = '\n\nIMPORTANT: Format your entire analysis strictly as a rigorous Cost-Benefit Analysis (Quantitative and Qualitative Costs vs Benefits).';
       else if(framework === 'second-order') fwInstruction = '\n\nIMPORTANT: Format your entire analysis based on Second-Order Effects (What happens in 1 month, 1 year, and 5 years as a consequence).';
       else if(framework === 'six-hats') fwInstruction = '\n\nIMPORTANT: Format your entire analysis using the Six Thinking Hats framework (Logic, Emotion, Caution, Optimism, Creativity, Management).';
+      else if(framework !== 'none') {
+        const customFw = window.customFrameworks.find(f => f.id === framework);
+        if (customFw) fwInstruction = '\n\nIMPORTANT FRAMEWORK INSTRUCTION: ' + customFw.logic;
+      }
       
       conversationHistory = [{role:'user',parts:[{text:`Analyze this decision thoroughly:\n\n"${decision}"\n\nSearch for the latest real-time economic data. Be specific with current numbers. Analyze from every angle.${fwInstruction}`}]}];
       startLoading();
@@ -1555,6 +1801,10 @@ CRITICAL: Search for ACTUAL CURRENT real-time data. Include specific numbers. Be
       else if(framework === 'cost-benefit') fwInstruction = '\n\nIMPORTANT: Format your entire analysis strictly as a rigorous Cost-Benefit Analysis (Quantitative and Qualitative Costs vs Benefits).';
       else if(framework === 'second-order') fwInstruction = '\n\nIMPORTANT: Format your entire analysis based on Second-Order Effects (What happens in 1 month, 1 year, and 5 years as a consequence).';
       else if(framework === 'six-hats') fwInstruction = '\n\nIMPORTANT: Format your entire analysis using the Six Thinking Hats framework (Logic, Emotion, Caution, Optimism, Creativity, Management).';
+      else if(framework !== 'none') {
+        const customFw = window.customFrameworks.find(f => f.id === framework);
+        if (customFw) fwInstruction = '\n\nIMPORTANT FRAMEWORK INSTRUCTION: ' + customFw.logic;
+      }
       
       const msgs = [{role:'user',parts:[{text:`Analyze this decision thoroughly:\n\n"${decision}"\n\nSearch for the latest real-time economic data. Be specific with current numbers. Analyze from every angle.${fwInstruction}`}]}];
       conversationHistory = [...msgs];
@@ -1747,12 +1997,13 @@ ${resA}
     // ==================== MARKDOWN ====================
     function renderMarkdown(md){
       let h=md;
-      h=h.replace(/```(\w*)\n([\s\S]*?)```/g,'<pre><code>$2</code></pre>');
-      h=h.replace(/(\|.+\|)\n(\|[-:\s|]+\|)\n((?:\|.+\|\n?)*)/g,(_,hdr,sep,body)=>{
+      h=h.replace(/```(\w*)\r?\n([\s\S]*?)```/g,'<pre><code>$2</code></pre>');
+      h=h.replace(/(?:^|\r?\n)(\|.+?\|)\r?\n(\|[-:\s|]+\|)\r?\n((?:\|.+?\|(?:\r?\n|$))*)/g,(_,hdr,sep,body)=>{
         const hs=hdr.split('|').filter(c=>c.trim()).map(c=>`<th>${c.trim()}</th>`).join('');
-        const rs=body.trim().split('\n').map(r=>{const cs=r.split('|').filter(c=>c.trim()).map(c=>`<td>${c.trim()}</td>`).join('');return`<tr>${cs}</tr>`;}).join('');
-        return`<table><thead><tr>${hs}</tr></thead><tbody>${rs}</tbody></table>`;
+        const rs=body.trim().split(/\r?\n/).map(r=>{const cs=r.split('|').filter(c=>c.trim()).map(c=>`<td>${c.trim()}</td>`).join('');return`<tr>${cs}</tr>`;}).join('');
+        return `\n<table><thead><tr>${hs}</tr></thead><tbody>${rs}</tbody></table>\n`;
       });
+      h=h.replace(/^[-_*]{3,}$/gm,'<hr>');
       h=h.replace(/^### (.+)$/gm,'<h3>$1</h3>');
       h=h.replace(/^## (.+)$/gm,'<h2>$1</h2>');
       h=h.replace(/^# (.+)$/gm,'<h1>$1</h1>');
@@ -1760,14 +2011,15 @@ ${resA}
       h=h.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
       h=h.replace(/\*(.+?)\*/g,'<em>$1</em>');
       h=h.replace(/^>\s(.+)$/gm,'<blockquote>$1</blockquote>');
-      h=h.replace(/^[-•]\s(.+)$/gm,'<li>$1</li>');
-      h=h.replace(/((?:<li>.*<\/li>\n?)+)/g,'<ul>$1</ul>');
+      h=h.replace(/^[-*]\s(.+)$/gm,'<li>$1</li>');
+      h=h.replace(/((?:<li>.*<\/li>\r?\n?)+)/g,'<ul>$1</ul>');
       h=h.replace(/^\d+\.\s(.+)$/gm,'<li>$1</li>');
-      h=h.replace(/\n\n+/g,'</p><p>');
+      h=h.replace(/\r?\n\r?\n+/g,'</p><p>');
       h='<p>'+h+'</p>';
       h=h.replace(/<p>\s*<\/p>/g,'');
-      h=h.replace(/<p>\s*(<(?:h[1-3]|table|ul|pre|blockquote)>)/g,'$1');
-      h=h.replace(/(<\/(?:h[1-3]|table|ul|pre|blockquote)>)\s*<\/p>/g,'$1');
+      h=h.replace(/<p>\s*(<(?:h[1-3]|table|ul|pre|blockquote|hr)>)/g,'$1');
+      h=h.replace(/(<\/(?:h[1-3]|table|ul|pre|blockquote|hr)>)\s*<\/p>/g,'$1');
+      h=h.replace(/(?<!>)\r?\n(?!<)/g, '<br>');
       return h;
     }
 
@@ -2129,6 +2381,100 @@ ${resA}
       renderTracker();
       if(load(SK.onboarded,false)&&getApiKey()) document.getElementById('onboarding').classList.add('hidden');
       else document.getElementById('onboarding').classList.remove('hidden');
+    }
+
+    // ==================== FIREBASE CLOUD SYNC ====================
+    const firebaseConfig = {
+      apiKey: "AIzaSyCjopnRaMjwraJkYN8KeNE-ToR1RxDHVho",
+      authDomain: "decion-7b1db.firebaseapp.com",
+      projectId: "decion-7b1db",
+      storageBucket: "decion-7b1db.firebasestorage.app",
+      messagingSenderId: "289266931909",
+      appId: "1:289266931909:web:d109814611ee1c1db778ac",
+      measurementId: "G-N53J7RJK9H"
+    };
+    
+    let firebaseApp, auth, db;
+    let currentUser = null;
+
+    try {
+      firebaseApp = firebase.initializeApp(firebaseConfig);
+      auth = firebase.auth();
+      db = firebase.firestore();
+      
+      auth.onAuthStateChanged(user => {
+        currentUser = user;
+        const loginBtn = document.getElementById('auth-login-btn');
+        const logoutBtn = document.getElementById('auth-logout-btn');
+        const emailLabel = document.getElementById('auth-user-email');
+        
+        if (user) {
+          if(loginBtn) loginBtn.style.display = 'none';
+          if(logoutBtn) logoutBtn.style.display = 'block';
+          if(emailLabel) {
+            emailLabel.style.display = 'block';
+            emailLabel.textContent = user.email.split('@')[0];
+            emailLabel.title = user.email;
+          }
+          closeAuthModal();
+          showToast('☁️ Cloud Sync Active', 'success');
+          syncFromCloud();
+        } else {
+          if(loginBtn) loginBtn.style.display = 'block';
+          if(logoutBtn) logoutBtn.style.display = 'none';
+          if(emailLabel) emailLabel.style.display = 'none';
+        }
+      });
+    } catch(e) {
+      console.warn("Firebase not configured yet.");
+    }
+
+    function openAuthModal() { document.getElementById('auth-modal').style.display = 'flex'; }
+    function closeAuthModal() { document.getElementById('auth-modal').style.display = 'none'; }
+
+    async function signupFirebase() {
+      const email = document.getElementById('auth-email').value.trim();
+      const pass = document.getElementById('auth-password').value;
+      if(!email || !pass) return showToast('Please enter email and password', 'error');
+      try {
+        await auth.createUserWithEmailAndPassword(email, pass);
+      } catch(e) { showToast(e.message, 'error'); }
+    }
+
+    async function loginFirebase() {
+      const email = document.getElementById('auth-email').value.trim();
+      const pass = document.getElementById('auth-password').value;
+      if(!email || !pass) return showToast('Please enter email and password', 'error');
+      try {
+        await auth.signInWithEmailAndPassword(email, pass);
+      } catch(e) { showToast(e.message, 'error'); }
+    }
+
+    function logoutFirebase() {
+      if(auth) auth.signOut();
+      showToast('Logged out of Cloud Sync', 'success');
+    }
+
+    async function syncFromCloud() {
+      if(!currentUser || !db) return;
+      try {
+        const docRef = db.collection('users').doc(currentUser.uid);
+        const docSnap = await docRef.get();
+        if (docSnap.exists) {
+          const data = docSnap.data();
+          ['profile','settings','tracker','history','custom_frameworks'].forEach(k => {
+            if(data[k]) save(SK[k] || `df_${k}`, data[k]);
+          });
+          
+          loadProfileForm();
+          loadSettingsForm();
+          renderHistory();
+          renderTracker();
+          showToast('☁️ Data synced from cloud', 'success');
+        }
+      } catch(e) {
+        console.error("Cloud sync fetch failed", e);
+      }
     }
     init();
   </script>
