@@ -1,0 +1,21 @@
+{
+  "name": "DecisionForge",
+  "short_name": "DecisionForge",
+  "start_url": "./DecisionForge.html",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#00f2fe",
+  "description": "AI-powered decision intelligence engine",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' fill='%23000'/%3E%3Cpath d='M96 24l72 56-72 56-72-56 72-56z' fill='%2300f2fe'/%3E%3C/svg%3E",
+      "type": "image/svg+xml",
+      "sizes": "192x192"
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' fill='%23000'/%3E%3Cpath d='M256 64l192 150-192 150-192-150 192-150z' fill='%2300f2fe'/%3E%3C/svg%3E",
+      "type": "image/svg+xml",
+      "sizes": "512x512"
+    }
+  ]
+}
