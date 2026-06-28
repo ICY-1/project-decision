@@ -389,6 +389,7 @@
     .result-body td { padding: 10px 12px; border: 1px solid var(--border); color: var(--text-secondary); }
     .result-body blockquote { border-left: 3px solid var(--accent-primary); padding: 12px 16px; margin: 12px 0; background: rgba(124,58,237,0.05); border-radius: 0 var(--radius-xs) var(--radius-xs) 0; color: var(--text-secondary); font-style: italic; }
     .result-actions { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
+    .result-actions button { flex: 1 1 auto; justify-content: center; text-align: center; }
 
     /* CHAT FOLLOW-UP */
     .chat-section {
@@ -562,31 +563,36 @@
       
       /* Main Content adjustments */
       .main-content {
-        margin-left: 0; padding: 16px; padding-bottom: calc(100px + env(safe-area-inset-bottom));
+        margin-left: 0; padding: 12px; padding-bottom: calc(100px + env(safe-area-inset-bottom));
         width: 100%; min-height: 100vh;
       }
-      .home-header { padding-top: 20px; margin-bottom: 24px; }
-      .home-header h1 { font-size: 28px; }
-      .decision-box { padding: 16px; border-radius: 16px; }
+      .home-header { padding-top: 20px; margin-bottom: 24px; text-align: center; }
+      .home-header h1 { font-size: 26px; }
+      .decision-box { padding: 14px; border-radius: 14px; }
       
       /* Sticky Input */
       .single-input { 
         position: sticky; bottom: calc(85px + env(safe-area-inset-bottom)); 
-        z-index: 900; background: var(--bg-surface); 
+        z-index: 900; background: var(--bg-primary); 
         border-radius: var(--radius); padding: 12px; 
-        box-shadow: 0 -10px 40px rgba(0,0,0,0.8); 
+        box-shadow: var(--shadow); 
         border: 1px solid var(--border); 
       }
       .input-wrapper { align-items: center; }
       #decision-input { min-height: 50px; padding: 12px 16px; font-size: 16px; } /* Prevents iOS zoom */
       
-      .result-header { flex-direction: column; text-align: center; padding: 20px; }
+      .result-header { flex-direction: column; text-align: center; padding: 16px; }
       .form-row { grid-template-columns: 1fr; }
-      .onboard-card { padding: 32px 20px; border-radius: 16px; }
+      .onboard-card { padding: 24px 16px; border-radius: 16px; }
       .compare-inputs.active { grid-template-columns: 1fr; }
-      .history-stats { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .history-stats { grid-template-columns: 1fr 1fr; gap: 10px; }
       .chat-msg.user { margin-left: 12px; }
       .chat-msg.ai { margin-right: 12px; }
+      
+      /* Mobile Buttons & UI sizing */
+      .btn-primary, .btn-secondary { padding: 10px 14px; font-size: 13px; }
+      .option-btn, .check-btn { padding: 8px 12px; font-size: 13px; }
+      .settings-card { padding: 16px; }
 
       /* Market Bottom Sheet (Mobile Overrides) */
       .market-panel {
